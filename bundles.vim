@@ -1,4 +1,5 @@
-
+set rtp+=~/.vim/vundle.git/
+call vundle#rc('/tmp/janus_bundles')
 
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/Color-Sampler-Pack'
