@@ -1,5 +1,9 @@
 set nocompatible
 
+filetype off
+so bundles.vim
+filetype plugin indent on
+
 set number
 set ruler
 syntax on
@@ -84,8 +88,6 @@ au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" load the plugin and indent settings for the detected filetype
-filetype plugin indent on
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
