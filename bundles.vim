@@ -38,37 +38,44 @@ Bundle 'wincent/Command-T'
 
 " Colors
 Bundle 'mrtazz/molokai.vim'
+" Bundle 'janus_themes', {'sync':'no'}
 
 " Bundle "http://conque.googlecode.com/files/conque_1.1.tar.gz"
 
-" vim_plugin_task "janus_themes" do
-"   # custom version of railscasts theme
-"   File.open(File.expand_path("../colors/railscasts+.vim", __FILE__), "w") do |file|
-"     file.puts <<-VIM.gsub(/^ +/, "").gsub("<SP>", " ")
-"       runtime colors/railscasts.vim
-"       let g:colors_name = "railscasts+"
-" 
-"       set fillchars=vert:\\<SP>
-"       set fillchars=stl:\\<SP>
-"       set fillchars=stlnc:\\<SP>
-"       hi  StatusLine guibg=#cccccc guifg=#000000
-"       hi  VertSplit  guibg=#dddddd
-"     VIM
-"   end
-" 
-"   # custom version of jellybeans theme
-"   File.open(File.expand_path("../colors/jellybeans+.vim", __FILE__), "w") do |file|
-"     file.puts <<-VIM.gsub(/^      /, "")
-"       runtime colors/jellybeans.vim
-"       let g:colors_name = "jellybeans+"
-" 
-"       hi  VertSplit    guibg=#888888
-"       hi  StatusLine   guibg=#cccccc guifg=#000000
-"       hi  StatusLineNC guibg=#888888 guifg=#000000
-"     VIM
-"   end
-" end
-" 
+augroup bundle#janus_themes
+  au!
+  au User BundleInstallPost call s:janus_themes()
+augroup END
+
+func! s:janus_themes()
+  ruby<<RUBY
+    File.open(File.expand_path("../colors/railscasts+.vim", __FILE__), "w") do |file|
+      file.puts <<-VIM.gsub(/^ +/, "").gsub("<SP>", " ")
+        runtime colors/railscasts.vim
+        let g:colors_name = "railscasts+"
+    
+        set fillchars=vert:\\<SP>
+        set fillchars=stl:\\<SP>
+        set fillchars=stlnc:\\<SP>
+        hi  StatusLine guibg=#cccccc guifg=#000000
+        hi  VertSplit  guibg=#dddddd
+      VIM
+    end
+    
+    # custom version of jellybeans theme
+    File.open(File.expand_path("../colors/jellybeans+.vim", __FILE__), "w") do |file|
+      file.puts <<-VIM.gsub(/^      /, "")
+        runtime colors/jellybeans.vim
+        let g:colors_name = "jellybeans+"
+    
+        hi  VertSplit    guibg=#888888
+        hi  StatusLine   guibg=#cccccc guifg=#000000
+        hi  StatusLineNC guibg=#888888 guifg=#000000
+      VIM
+    end
+RUBY
+endf
+
 " vim_plugin_task "mustache" do
 "   sh "curl https://github.com/defunkt/mustache/raw/master/contrib/mustache.vim > syntax/mustache.vim"
 "   File.open(File.expand_path('../ftdetect/mustache.vim', __FILE__), 'w') do |file|
