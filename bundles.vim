@@ -38,7 +38,7 @@ Bundle 'wincent/Command-T'
 
 " Colors
 Bundle 'mrtazz/molokai.vim'
-" Bundle 'janus_themes', {'sync':'no'}
+Bundle! 'janus_themes'
 
 " Bundle "http://conque.googlecode.com/files/conque_1.1.tar.gz"
 
@@ -48,8 +48,10 @@ augroup bundle#janus_themes
 augroup END
 
 func! s:janus_themes()
+  !mkdir -p colors/
+
   ruby<<RUBY
-    File.open(File.expand_path("../colors/railscasts+.vim", __FILE__), "w") do |file|
+    File.open("colors/railscasts+.vim", "w") do |file|
       file.puts <<-VIM.gsub(/^ +/, "").gsub("<SP>", " ")
         runtime colors/railscasts.vim
         let g:colors_name = "railscasts+"
@@ -63,7 +65,7 @@ func! s:janus_themes()
     end
     
     # custom version of jellybeans theme
-    File.open(File.expand_path("../colors/jellybeans+.vim", __FILE__), "w") do |file|
+    File.open("colors/jellybeans+.vim", "w") do |file|
       file.puts <<-VIM.gsub(/^      /, "")
         runtime colors/jellybeans.vim
         let g:colors_name = "jellybeans+"
