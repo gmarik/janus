@@ -44,7 +44,7 @@ Bundle! 'janus_themes'
 
 augroup bundle#janus_themes
   au!
-  au User BundleInstallPost call s:janus_themes()
+  au User BundleInstall call s:janus_themes()
 augroup END
 
 func! s:janus_themes()
