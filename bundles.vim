@@ -95,11 +95,22 @@ func! s:install_mustache()
 RUBY
 endfunc
 
-" vim_plugin_task "arduino","git://github.com/vim-scripts/Arduino-syntax-file.git" do
-"   File.open(File.expand_path('../ftdetect/arduino.vim', __FILE__), 'w') do |file|
-"     file << "au BufNewFile,BufRead *.pde             setf arduino"
-"   end
-" end
+Bundle 'Arduino-syntax-file'
+
+augroup bundle#arduino-syntax-file
+  au!
+  au User BundleInstallPost call s:install_arduino()
+augroup end
+
+func! s:install_arduino()
+  !mkdir -p ftdetect
+  ruby<<VIM
+    File.open('ftdetect/arduino.vim', 'w') do |file|
+      file << "au BufNewFile,BufRead *.pde             setf arduino"
+    end
+VIM
+endfunc
+
 " vim_plugin_task "vwilight" do
 "   sh "curl https://gist.github.com/raw/796172/724c7ca237a7f6b8d857c4ac2991cfe5ffb18087/vwilight.vim > colors/vwilight.vim"
 " end
