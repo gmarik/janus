@@ -119,12 +119,6 @@ augroup bundle#vwlight
   au User BundleInstallPost !curl https://gist.github.com/raw/796172/724c7ca237a7f6b8d857c4ac2991cfe5ffb18087/vwilight.vim > colors/vwilight.vim
 augroup end
 
-"desc "Update the documentation"
-"task :update_docs do
-"  puts "Updating VIM Documentation..."
-"  system "vim -e -s <<-EOF\n:helptags ~/.vim/doc\n:quit\nEOF"
-"end
-
 "task :default => [
 "  :update_docs,
 "  :link_vimrc
