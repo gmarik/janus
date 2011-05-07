@@ -78,12 +78,23 @@ func! s:janus_themes()
 RUBY
 endf
 
-" vim_plugin_task "mustache" do
-"   sh "curl https://github.com/defunkt/mustache/raw/master/contrib/mustache.vim > syntax/mustache.vim"
-"   File.open(File.expand_path('../ftdetect/mustache.vim', __FILE__), 'w') do |file|
-"     file << "au BufNewFile,BufRead *.mustache        setf mustache"
-"   end
-" end
+Bundle! 'mustache'
+
+augroup bundle#mustache
+  au!
+  au User BundleInstall call s:install_mustache()
+augroup end
+
+func! s:install_mustache()
+  !mkdir -p syntax ftdetect
+  !curl https://github.com/defunkt/mustache/raw/master/contrib/mustache.vim > syntax/mustache.vim
+  ruby <<RUBY
+  File.open('ftdetect/mustache.vim', 'w') do |file|
+    file << "au BufNewFile,BufRead *.mustache        setf mustache"
+  end
+RUBY
+endfunc
+
 " vim_plugin_task "arduino","git://github.com/vim-scripts/Arduino-syntax-file.git" do
 "   File.open(File.expand_path('../ftdetect/arduino.vim', __FILE__), 'w') do |file|
 "     file << "au BufNewFile,BufRead *.pde             setf arduino"
