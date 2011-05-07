@@ -111,9 +111,13 @@ func! s:install_arduino()
 VIM
 endfunc
 
-" vim_plugin_task "vwilight" do
-"   sh "curl https://gist.github.com/raw/796172/724c7ca237a7f6b8d857c4ac2991cfe5ffb18087/vwilight.vim > colors/vwilight.vim"
-" end
+Bundle! 'vwlight'
+
+augroup bundle#vwlight
+  au!
+  au User BundleInstallPost !mkdir -p colors
+  au User BundleInstallPost !curl https://gist.github.com/raw/796172/724c7ca237a7f6b8d857c4ac2991cfe5ffb18087/vwilight.vim > colors/vwilight.vim
+augroup end
 
 "desc "Update the documentation"
 "task :update_docs do
